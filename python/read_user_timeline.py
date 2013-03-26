@@ -9,7 +9,8 @@ from twitter import *
 from datetime import *
 from pytz import *
 
-# this is the user we're going to query.
+# This is the user we're going to query.
+# It is actually the screen_name of the user
 user = "TrafficNSW"
 
 # create twitter API object
