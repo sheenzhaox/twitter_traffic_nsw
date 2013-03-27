@@ -61,8 +61,8 @@ class TrafficNSW:
             # process event content
             event_content = status["text"].encode("utf-8")
 
-            event_type = event_content[len("Sydney Traffic ") : event_content.index(' -')]
-            event_location = event_content[event_content.index('-')+2 : event_content.index('#')]
+            event_type = event_content[len("Sydney Traffic ") : event_content.find(' -')]
+            event_location = event_content[event_content.find('-')+2 : event_content.find('#')]
             event_suburb = ""
             for i in event_location.split():
                 if i==i.upper():
@@ -70,8 +70,8 @@ class TrafficNSW:
                         event_suburb += i
                     else:
                         event_suburb += " " + i
-            event_road1 = event_location[event_location.index(event_suburb)+len(event_suburb) : event_location.index("at")].strip()
-            event_road2 = event_location[event_location.index("at")+3 : ].strip()
+            event_road1 = event_location[event_location.find(event_suburb)+len(event_suburb) : event_location.find("at")].strip()
+            event_road2 = event_location[event_location.find("at")+3 : ].strip()
 
             event = {"time":event_time, "suburb":event_suburb, "type":event_type, "road1":event_road1, "road2":event_road2}
             self.text.append(event)
