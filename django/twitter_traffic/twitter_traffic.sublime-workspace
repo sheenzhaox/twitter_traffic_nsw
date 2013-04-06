@@ -1,0 +1,413 @@
+{
+	"auto_complete":
+	{
+		"selected_items":
+		[
+			[
+				"new",
+				"new_pos"
+			],
+			[
+				"get",
+				"getNewPosition"
+			],
+			[
+				"curr",
+				"curr_pos"
+			],
+			[
+				"ti",
+				"tiles"
+			],
+			[
+				"po",
+				"position"
+			],
+			[
+				"is",
+				"isPositionInRoom"
+			],
+			[
+				"clean",
+				"cleanTileAtPosition"
+			],
+			[
+				"num",
+				"number_cleaned_tiles"
+			],
+			[
+				"Val",
+				"ValueError"
+			],
+			[
+				"matr",
+				"matrix_tile_cleaned"
+			],
+			[
+				"fib",
+				"fibn_1"
+			],
+			[
+				"fibn",
+				"fibn_2"
+			],
+			[
+				"to",
+				"total_payment"
+			],
+			[
+				"fl",
+				"float_number"
+			],
+			[
+				"tr",
+				"trunk_a_number"
+			],
+			[
+				"ca",
+				"calc_payment_and_balance"
+			],
+			[
+				"mini",
+				"minimum_payment"
+			],
+			[
+				"in",
+				"interest"
+			],
+			[
+				"an",
+				"annualInterestRate"
+			],
+			[
+				"un",
+				"unpaid_balance"
+			],
+			[
+				"min",
+				"minimum_payment"
+			],
+			[
+				"mont",
+				"monthlyPaymentRate"
+			],
+			[
+				"low",
+				"lower"
+			],
+			[
+				"r",
+				"raw_input"
+			],
+			[
+				"b",
+				"bin_fraction"
+			],
+			[
+				"bin",
+				"bin_integer"
+			],
+			[
+				"dec",
+				"dec_integer"
+			],
+			[
+				"de",
+				"dec2bin"
+			],
+			[
+				"int",
+				"integer"
+			],
+			[
+				"str",
+				"strip"
+			],
+			[
+				"pri",
+				"print_an_event"
+			],
+			[
+				"print",
+				"print_events"
+			],
+			[
+				"cu",
+				"curr_status"
+			],
+			[
+				"ev",
+				"event_type"
+			],
+			[
+				"event",
+				"event_road2"
+			],
+			[
+				"even",
+				"event_location"
+			],
+			[
+				"eve",
+				"event_content"
+			],
+			[
+				"cur",
+				"current_time"
+			],
+			[
+				"time",
+				"time_diff_minutes"
+			],
+			[
+				"date",
+				"datetime"
+			],
+			[
+				"obtai",
+				"obtain_traffic_from_twitter"
+			],
+			[
+				"dat",
+				"data_string"
+			],
+			[
+				"Lev",
+				"Level11"
+			],
+			[
+				"Le",
+				"Level10"
+			],
+			[
+				"p",
+				"pN"
+			],
+			[
+				"arr",
+				"arrayInt"
+			],
+			[
+				"prin",
+				"printArray"
+			]
+		]
+	},
+	"buffers":
+	[
+	],
+	"build_system": "",
+	"command_palette":
+	{
+		"height": 392.0,
+		"selected_items":
+		[
+			[
+				"p",
+				"Package Control: Install Package"
+			],
+			[
+				"",
+				"Package Control: List Packages"
+			],
+			[
+				"pack",
+				"Package Control: Install Package"
+			],
+			[
+				"pa",
+				"Package Control: Install Package"
+			],
+			[
+				"pac",
+				"Package Control: Install Package"
+			],
+			[
+				"packet",
+				"Package Control: Install Package"
+			],
+			[
+				"insta",
+				"Package Control: Install Package"
+			],
+			[
+				"Pack",
+				"Package Control: Install Package"
+			],
+			[
+				"Package Control",
+				"Package Control: Add Repository"
+			]
+		],
+		"width": 449.0
+	},
+	"console":
+	{
+		"height": 125.0
+	},
+	"distraction_free":
+	{
+		"menu_visible": true,
+		"show_minimap": false,
+		"show_open_files": false,
+		"show_tabs": false,
+		"side_bar_visible": false,
+		"status_bar_visible": false
+	},
+	"file_history":
+	[
+		"/Users/sheenzhaox/Programming/Online_Class/Edx_MIT600x/W7/ProblemSet7/ps7.py",
+		"/Users/sheenzhaox/Programming/Online_Class/Edx_MIT600x/W7/ProblemSet7/run_pkgtest.py",
+		"/Users/sheenzhaox/Programming/Online_Class/Edx_MIT600x/W7/ProblemSet7/ps7_visualize.py",
+		"/usr/local/bin/django-admin.py",
+		"/Users/sheenzhaox/Library/Application Support/Sublime Text 2/Packages/SublimeRope/Default (OSX).sublime-keymap",
+		"/Users/sheenzhaox/Programming/Online_Class/Edx_MIT600x/W7/randomWalks-segment2.py",
+		"/Users/sheenzhaox/Programming/Online_Class/Edx_MIT600x/W7/w7-plot.py",
+		"/Users/sheenzhaox/Programming/Online_Class/Edx_MIT600x/ProblemSet3/fibonacci.py",
+		"/Users/sheenzhaox/Programming/Online_Class/Edx_MIT600x/ProblemSet3/ps3_hangman.py",
+		"/Users/sheenzhaox/Programming/Online_Class/Edx_MIT600x/ProblemSet3/ps3_newton.py",
+		"/Users/sheenzhaox/Programming/Online_Class/Edx_MIT600x/ProblemSet3/words.txt",
+		"/Users/sheenzhaox/Programming/Online_Class/Edx_MIT600x/w2ps2.py",
+		"/Users/sheenzhaox/Programming/Online_Class/Edx_MIT600x/lec3.2.4.py",
+		"/Users/sheenzhaox/Programming/Online_Class/Edx_MIT600x/l3.9.py",
+		"/Users/sheenzhaox/Programming/Online_Class/Edx_MIT600x/floating.py",
+		"/Users/sheenzhaox/Programming/twitter_traffic_nsw/python/TrafficNSW.py",
+		"/Users/sheenzhaox/Programming/twitter_traffic_nsw/python/test_trafficNSW.py",
+		"/Users/sheenzhaox/Programming/be-project/be-project/python/MyUtil.py",
+		"/Users/sheenzhaox/Programming/twitter_traffic_nsw/python/README",
+		"/Users/sheenzhaox/Programming/twitter_traffic_nsw/python/trafficnsw-twitter-parser.py",
+		"/Users/sheenzhaox/Dropbox/research/program/wowmom_lr/wowmom_lr.mod",
+		"/Users/sheenzhaox/Dropbox/research/program/wowmom_lr/wowmom_lr.dat",
+		"/Users/sheenzhaox/Programming/test/test_cpp.cpp",
+		"/Users/sheenzhaox/Programming/test/vector_test.cpp",
+		"/Users/sheenzhaox/Programming/test/c_test1.c",
+		"/Users/sheenzhaox/Programming/test/c_test2.c",
+		"/Users/sheenzhaox/Dropbox/job/2013/0305 Software Engineer |C++|Algortihmic Developer/cveng.tex",
+		"/Users/sheenzhaox/Dropbox/job/2013/0305 Software Engineer R&D Platform/job_desc.txt",
+		"/Users/sheenzhaox/Dropbox/job/CV/english/cveng.tex",
+		"/Users/sheenzhaox/Library/Application Support/Sublime Text 2/Packages/Default/Preferences.sublime-settings",
+		"/Users/sheenzhaox/Library/Application Support/Sublime Text 2/Packages/User/Preferences.sublime-settings",
+		"/Users/sheenzhaox/Dropbox/job/20121008 Software Engineer - Inspererecruit/cveng.tex",
+		"/usr/local/texlive/2012/texmf-dist/tex/latex/fontspec/fontspec.sty",
+		"/Users/sheenzhaox/Library/Application Support/Sublime Text 2/Packages/LaTeXTools/LaTeXTools Preferences.sublime-settings",
+		"/Users/sheenzhaox/Library/Application Support/Sublime Text 2/Packages/LaTeXTools/README.markdown",
+		"/Applications/Sublime Text 2.app/Contents/MacOS/Sublime Text 2"
+	],
+	"find":
+	{
+		"height": 35.0
+	},
+	"find_in_files":
+	{
+		"height": 0.0,
+		"where_history":
+		[
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": false,
+		"find_history":
+		[
+			"()",
+			"index",
+			"print",
+			";\n",
+			"3342 3032",
+			"09C33B",
+			"8ac3",
+			"BB70",
+			"000C BB70",
+			"000CBB70",
+			"3342"
+		],
+		"highlight": true,
+		"in_selection": false,
+		"preserve_case": false,
+		"regex": false,
+		"replace_history":
+		[
+			"3242 3032",
+			"3242"
+		],
+		"reverse": false,
+		"show_context": true,
+		"use_buffer2": true,
+		"whole_word": false,
+		"wrap": true
+	},
+	"groups":
+	[
+		{
+			"sheets":
+			[
+			]
+		}
+	],
+	"incremental_find":
+	{
+		"height": 0.0
+	},
+	"input":
+	{
+		"height": 31.0
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				1,
+				1
+			]
+		],
+		"cols":
+		[
+			0.0,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			1.0
+		]
+	},
+	"menu_visible": true,
+	"output.exec":
+	{
+		"height": 214.0
+	},
+	"replace":
+	{
+		"height": 64.0
+	},
+	"save_all_on_build": true,
+	"select_file":
+	{
+		"height": 0.0,
+		"selected_items":
+		[
+			[
+				"",
+				"/Users/sheenzhaox/Dropbox/job/2013/UTS-Software Engineer/cveng.tex"
+			]
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 0.0,
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"show_minimap": true,
+	"show_open_files": true,
+	"show_tabs": true,
+	"side_bar_visible": true,
+	"side_bar_width": 215.0,
+	"status_bar_visible": true
+}
