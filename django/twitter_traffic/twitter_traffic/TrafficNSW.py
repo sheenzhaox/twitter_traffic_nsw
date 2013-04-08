@@ -3,7 +3,7 @@
 import twitter
 import datetime
 from time import strptime
-from pprint import pprint
+# from pprint import pprint
 
 
 class TrafficNSW:
@@ -32,7 +32,7 @@ class TrafficNSW:
         '''
         current_time = datetime.datetime.now()
         time_diff = (current_time - self.last_time_obtain_from_twitter).seconds
-        if time_diff < 600:
+        if time_diff < 1800:
             # print "No change"
             return
         else:
@@ -92,8 +92,5 @@ class TrafficNSW:
 
     # @staticmethod
     def print_an_event(self, an_event):
-
-        event = an_event["time"].strftime("%Y-%m-%d %H:%M:%S") + '\t' + an_event["suburb"] + '\t' + an_event["type"] + '\t' + an_event["road1"] + " x " + an_event["road2"]
-        print event
-        return event
+        print an_event["time"].strftime("%Y-%m-%d %H:%M:%S") + '\t' + an_event["suburb"] + '\t' + an_event["type"] + '\t' + an_event["road1"] + " x " + an_event["road2"]
 
