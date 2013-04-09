@@ -4,6 +4,8 @@ import TrafficNSW
 
 tnsw = TrafficNSW.TrafficNSW()
 
-events = tnsw.parse_trafficnsw_twitter_entry(TrafficNSW.TrafficNSW.obtain_twitter_raw_data())
-for event in events:
-    print event.values()
+print str(tnsw)
+
+tnsw.obtain_traffic_from_twitter()
+
+print str(tnsw)
