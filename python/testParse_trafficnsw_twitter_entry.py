@@ -6,6 +6,6 @@ tnsw = TrafficNSW.TrafficNSW()
 
 print str(tnsw)
 
-tnsw.obtain_traffic_from_twitter()
+print tnsw.get_traffic_in_minutes(10)
 
-print str(tnsw)
+# print str(tnsw)

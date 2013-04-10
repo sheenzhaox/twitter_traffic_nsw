@@ -19,10 +19,12 @@ class TrafficNSW:
         return self.id
 
     def get_traffic_info(self):
+        if self.text==[]:
+            self.get_traffic_from_twitter()
         return self.text
 
     def get_latest_event(self):
-        self.obtain_traffic_from_twitter()
+        self.get_traffic_from_twitter()
         curr_status = self.text[0]
         return self.print_an_event(curr_status)
 
@@ -120,8 +122,10 @@ class TrafficNSW:
 
         return events
 
+    """
 
-    def obtain_traffic_from_twitter(self):
+    """
+    def get_traffic_from_twitter(self):
 
         '''
         The following block is to test if the twitter query happened in the
@@ -144,6 +148,23 @@ class TrafficNSW:
             self.text.append(status)
 
         return results
+
+    """
+
+    """
+    def get_traffic_in_minutes(self, minutes = 60):
+        seconds = minutes * 60
+        current_time = datetime.datetime.now()
+
+        self.get_traffic_from_twitter()
+        output = []
+
+        for event in self.text:
+            time_diff = (current_time - event["time"]).seconds
+            if time_diff <= seconds:
+                output.append(event)
+
+        return output
 
 
     def __str__(self):
