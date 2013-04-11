@@ -2,7 +2,7 @@
 
 import twitter
 import datetime
-from time import strptime
+# from time import strptime
 from geopy import geocoders
 # from pprint import pprint
 
@@ -35,7 +35,7 @@ class TrafficNSW:
     '''
     @staticmethod
     def obtain_twitter_raw_data(id = "TrafficNSW"):
-        tw = twitter.Twitter()
+        tw = twitter.Twitter(api_version='1')
         results = tw.statuses.user_timeline(screen_name = id)
         return results
 
