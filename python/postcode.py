@@ -3,7 +3,9 @@
 from geopy import geocoders
 
 def query_postcode(query):
-    '''
+    ''' (str) -> str
+
+    RETURN :    The postcode 
     This function check postcode by suburb, or check suburb by postcode.
     '''
 

@@ -10,6 +10,13 @@ from postcode import query_postcode
 
 class TrafficNSW:
     def __init__(self, screen_name="TrafficNSW", expire = 3600):
+        ''' (TrafficNSW, str, int) -> TrafficNSW
+
+        RETURN :    an initiated TrafficNSW object.
+        PARAMETER : 
+            screen_name - the username in twitter
+            expire - expire time (haven't been used yet)
+        '''
         # self["name"] = screen_name
         self.id = screen_name
         self.text = []
@@ -179,3 +186,40 @@ class TrafficNSW:
             'street': self.text[0]['street'], \
             'suburb': self.text[0]['suburb'], \
             'type': self.text[0]['type'] })
+
+
+# The following part is used for test
+if __name__ == '__main__':
+    '''
+    2 kinds of tests could be done in the following part.
+    (1) doctest
+        It would test every function with standard comments in the file. This
+        method is not good for Class.
+    (2) unitest
+        It will run some written script.
+    '''
+
+    # # DOCTEST
+    # import doctest
+    # doctest.testmod()
+
+    # # UNITEST
+    # import unitest
+
+    # class TestTrafficNSW(unitest.TestCase):
+    #     ''' Test functions in TrafficNSW. '''
+
+    #     # ALL test functions should start as 'test_'
+    #     def test_xxx(self):
+    #         # xxx
+    #         actual = xxx_function
+    #         expected = xxx_exp
+    #         self.assertEqual(expected, actual)
+
+    tnsw = TrafficNSW()
+
+    # tnsw.obtain_traffic_from_twitter()
+    # tnsw.obtain_traffic_from_twitter()
+
+    # tnsw.get_latest_event()
+    tnsw.print_events()
