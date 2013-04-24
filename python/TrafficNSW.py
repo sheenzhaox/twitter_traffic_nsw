@@ -2,8 +2,9 @@
 
 import twitter
 import datetime
-# from time import strptime
+from time import strptime
 from geopy import geocoders
+from postcode import query_postcode
 # from pprint import pprint
 
 
@@ -71,31 +72,33 @@ class TrafficNSW:
             event_location = str_event[ str_event.find('-')+2 : \
                                         str_event.find(' #')]
 
-            ''' 
-            The following part uses geopy to process location into geocode.
-            '''
-            geo = geocoders.GoogleV3()
-            try:
-                event_geo = geo.geocode(event_location)
-            except:
-                event_geo = None
+            # ''' 
+            # The following part uses geopy to process location into geocode.
+            # '''
+            # geo = geocoders.GoogleV3()
+            # try:
+            #     event_geo = geo.geocode(event_location)
+            # except:
+            #     event_geo = None
 
-            if event_geo != None:
-                # print "%s: %.5f, %.5f" % (event_geo[0], event_geo[1][0], event_geo[1][1])
-                # print event_geo
-                event_street = event_geo[0].encode("utf-8").split(',')[0]
-                event_suburb = event_geo[0].encode("utf-8").split(',')[1].split()[:-2]
-                event_postcode = event_geo[0].encode("utf-8").split(',')[1].split()[-1]
-                event_cord = event_geo[1]
-            else: 
-                event_suburb = ""
-                for i in event_location.split():
-                    if i==i.upper():
-                        event_suburb += i + " "
-                event_suburb.strip()        # Remove the last ' '
-                event_street = event_location.lstrip(event_suburb).strip()
-                event_postcode = None
-                event_cord = None
+            # if event_geo != None:
+            #     # print "%s: %.5f, %.5f" % (event_geo[0], event_geo[1][0], event_geo[1][1])
+            #     # print event_geo
+            #     event_street = event_geo[0].encode("utf-8").split(',')[0]
+            #     event_suburb = event_geo[0].encode("utf-8").split(',')[1].split()[:-2]
+            #     event_postcode = event_geo[0].encode("utf-8").split(',')[1].split()[-1]
+            #     event_cord = event_geo[1]
+            # else: 
+            #     event_suburb = ""
+            #     for i in event_location.split():
+            #         if i==i.upper():
+            #             event_suburb += i + " "
+            #     event_suburb.strip()        # Remove the last ' '
+            #     event_street = event_location.lstrip(event_suburb).strip()
+            #     event_postcode = None
+            #     event_cord = None
+
+            gcode = query_postcode(event_location)
 
             '''
             Data is shown as 
@@ -113,10 +116,10 @@ class TrafficNSW:
             event = {}
             event['time'] = event_time
             event['type'] = event_type
-            event['suburb'] = event_suburb
-            event['street'] = event_street
-            event['postcode'] = event_postcode
-            event['coordinate'] = event_cord
+            event['suburb'] = gcode['suburb']
+            event['street'] = gcode['street']
+            event['postcode'] = gcode['postcode']
+            event['coordinate'] = gcode['cord']
 
             events.append(event)
 
