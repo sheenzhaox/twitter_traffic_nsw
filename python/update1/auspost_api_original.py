@@ -1,32 +1,25 @@
-import json
-
-
+import anyjson
 import httplib2
 import sys
 import urllib
 import urlparse
 
 
-class AuspostAPI(object):
-    ''' The class to query location from Auspost.
-    The api is from Auspost http://auspost.com.au/devcentre/
-    
+class API(object):
+    ''' 
+    This API comes from https://bitbucket.org/goodtune/python-auspost
     '''
 
     ENDPOINT = 'https://auspost.com.au/api/'
-    MY_KEY = '1bd02277-66a4-435a-95fe-fa9e02125cf6'
     SERIALIZATION = '.json'
-
 
     def __init__(self, api_key, debug=False, **kwargs):
         self.headers = {'AUTH-KEY': api_key}
         self.client = httplib2.Http(**kwargs)
         self.debug = debug
 
-
     def _transform_content(self, content):
-        return json.loads(content)
-
+        return anyjson.deserialize(content)
 
     def _make_request(self, path, parameters={}, method='GET', headers={}, **kwargs):
         headers.update(self.headers)
@@ -178,11 +171,4 @@ class AuspostAPI(object):
 
 if __name__ == '__main__':
     auspost_api = API('1bd02277-66a4-435a-95fe-fa9e02125cf6')
-    ans = auspost_api.postcode_search(2121)
-
-    print ans
-
-    print "number of answers: ", len(ans['localities']['locality'])
-
-    for i in ans['localities']['locality']:
-        print i['location']
+    print auspost_api.postcode_search(2121)
