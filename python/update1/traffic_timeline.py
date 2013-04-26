@@ -62,9 +62,10 @@ class TrafficTimeline(TwitterTimeline):
             - u'text': event information
             - u'created_at': event time
             '''
-            str_event = status['text'].encode("utf-8")
-            str_event_time = status['created_at'].encode("utf-8")
+            str_event = status['text']
+            str_event_time = status['created_at']
 
+            print str_event, str_event_time
 
         return raw_data
 
