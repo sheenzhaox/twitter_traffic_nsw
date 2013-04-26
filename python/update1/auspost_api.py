@@ -116,14 +116,44 @@ class AuspostAPI(object):
 
     def search_postcode(self, q):
         ''' (query) -> postcode or suburb
-        '''
-        q = str(q)
-        if len(q.split(',')) == 2:
-            r = self._postcode_query(q[0], state = q[1])
-        else:
-            r = self._postcode_query(q)
 
-        return r['localities']['locality']
+        RETURN :    postcode(s) or suburb(s)
+        DESC :      If q is a postcode, the function finds the corresponding
+                    suburbs;
+                    If q is a suburb, the function finds postcode. The Auspost
+                    API does the generally search. This means that the search
+                    finds all suburbs includes the string(q). For example,
+                        search_postcode('epping')
+                    it returns 4 suburbs. 2 Epping in NSW and VIC, North Epping
+                    in NSW and Epping. So the last two are not the answer we 
+                    want. It is necessary to filter them. Besides, to increase
+                    the accuracy, it would be better to add state into query.
+        '''
+
+        # If q_is_postcode, find corresponding suburb(s). If multiple suburbs
+        try:
+            q = int(q)
+        except:
+            ''' q is not a postcode '''
+
+        q_is_postcode = isinstance( q, int )
+        if q_is_postcode:
+            q = str(q)
+
+        if len(q.split(',')) == 2:
+            q0 = q.split(',')[0]
+            q1 = q.split(',')[1]
+            r = self._postcode_query(q0, state = q1)['localities']['locality']
+        else:
+            q0 = q
+            r = self._postcode_query(q0)['localities']['locality']
+
+        if not q_is_postcode:
+            for i in sorted(r, reverse=True):
+                if i['location'] != q0.upper():
+                    r.remove(i)
+
+        return r
         
 
     # def countries(self):
@@ -260,5 +290,5 @@ class AuspostAPI(object):
 
 if __name__ == '__main__':
     auspost_api = AuspostAPI()
-    print auspost_api.search_postcode('epping')
+    print auspost_api.search_postcode('epping, nsw')
 
