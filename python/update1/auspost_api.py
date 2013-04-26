@@ -140,6 +140,7 @@ class AuspostAPI(object):
         if q_is_postcode:
             q = str(q)
 
+        # The following is to process whether the state has been provided.
         if len(q.split(',')) == 2:
             q0 = q.split(',')[0]
             q1 = q.split(',')[1]
@@ -148,6 +149,7 @@ class AuspostAPI(object):
             q0 = q
             r = self._postcode_query(q0)['localities']['locality']
 
+        # The following is to filter multiple answers
         if not q_is_postcode:
             for i in sorted(r, reverse=True):
                 if i['location'] != q0.upper():

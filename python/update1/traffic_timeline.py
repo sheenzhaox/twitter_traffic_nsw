@@ -3,7 +3,7 @@
 from twitter_timeline import TwitterTimeline
 from time import strptime
 # from geopy import geocoders
-from postcode import query_postcode
+# from postcode import query_postcode
 from pprint import pprint
 
 
