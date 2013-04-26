@@ -115,4 +115,4 @@ class GmapQuery(object):
 
 if __name__ == '__main__':
 
-    print GmapQuery.check_suburb_by_postcode(2032)
+    print GmapQuery.check_suburb_by_postcode(2000)

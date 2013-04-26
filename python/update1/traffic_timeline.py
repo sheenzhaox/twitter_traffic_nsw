@@ -2,8 +2,9 @@
 
 from twitter_timeline import TwitterTimeline
 from time import strptime
+import datetime
 # from geopy import geocoders
-# from postcode import query_postcode
+from auspost_api import AuspostAPI
 from pprint import pprint
 
 
@@ -37,11 +38,54 @@ class TrafficTimeline(TwitterTimeline):
 
         # events = []
         raw_data = self.get_timelines()
+        processed_data = []
+        # print raw_data[0].keys()
 
+
+        '''            
+        The following are the keys in TrafficNSW timeline raw data
+        - u'user': user information
+        - u'text': event information
+        - u'created_at': event time
+
+        Typical event is shown as follow
+            Sydney Traffic EMERGENCY ROAD WORKS - TURRAMURRA Pacific Hwy \
+            at Kissing Point Rd #sydtraffic #trafficnetwork
+        Before '-', it is event type; after that, it is event location.
+        I also need to remove "Sydney Traffic" and 
+            "#sydtraffic #trafficnetwork" signs.
+        '''
         for entry in raw_data:
-            print entry.keys()
+            # Process event time
+            '''
+            Data is shown as 
+                Tue Apr 09 01:50:04 +0000 2013
+            Please note it is UTC time. So, we need to convert it into local 
+            (Sydney) time.
+            Because striptime has a bug in parse '%z', I have to remove +0000 \
+            from the string
+            '''
+            str_event_time = entry['created_at'].replace("+0000 ", "")
+            utc_time = datetime.datetime.strptime(str_event_time, \
+                '%a %b %d %H:%M:%S %Y')
+            event_time = utc_time + datetime.timedelta(hours=10)
 
-        return raw_data
+            event = {'time': event_time}
+
+            # Process event text
+            str_event = entry['text']
+
+            event_type = str_event[len('Sydney Traffic '):str_event.find(' -')]
+
+            event_location = str_event[ str_event.find('-')+2 : \
+                                        str_event.find(' #')]
+
+            print event_type, event_location
+
+            processed_data.append(event)
+
+        
+        return processed_data
 
 
     def parse_livetrafficsyd_twitter_entry(self):
