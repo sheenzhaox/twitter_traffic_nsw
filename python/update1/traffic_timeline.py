@@ -37,11 +37,26 @@ class TrafficTimeline(TwitterTimeline):
 
         # events = []
         raw_data = self.get_timelines()
+        processed_data = []
 
-        for entry in raw_data:
-            print entry.keys()
+        print raw_data[0].keys()
 
-        return raw_data
+        for item in raw_data:
+            '''
+            The following are the keys in TrafficNSW timeline raw data
+            - u'user': user information
+            - u'text': event information
+            - u'created_at': event time
+            '''
+
+            # The first step is to process the event time. Because the 
+
+            event = {'time':item['created_at']}
+
+            print event
+            
+
+        return processed_data
 
 
     def parse_livetrafficsyd_twitter_entry(self):
@@ -56,12 +71,7 @@ class TrafficTimeline(TwitterTimeline):
         raw_data = self.get_timelines()
 
         for entry in raw_data:
-            '''
-            The following are the keys in TrafficNSW timeline raw data
-            - u'user': user information
-            - u'text': event information
-            - u'created_at': event time
-            '''
+            
             str_event = status['text']
             str_event_time = status['created_at']
 
