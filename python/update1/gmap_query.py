@@ -14,18 +14,18 @@ class GmapQuery(object):
         postcode - 
     '''
 
-    def __init__(self, query):
+    def __init__(self):
         ''' (GmapQuery, str, str, str) -> GmapQuery
         '''
 
-        self.query = query
+        # self.query = query
 
-        # If the query is postcode, check for suburb
-        if isinstance( query, int ):
-            assert len(str(query))==4, 'Postcode should be 4 digits'
-            GmapQuery.check_suburb_by_postcode(query)
-        else:
-            GmapQuery.check_address(query)
+        # # If the query is postcode, check for suburb
+        # if isinstance( query, int ):
+        #     assert len(str(query))==4, 'Postcode should be 4 digits'
+        #     GmapQuery.check_suburb_by_postcode(query)
+        # else:
+        #     GmapQuery.check_address(query)
 
 
     @staticmethod
@@ -48,6 +48,72 @@ class GmapQuery(object):
             answer = None
 
         return answer
+
+
+    def ask_gmap(self, query):
+        ''' (GmapQuery, str_query) -> str_answer
+
+        '''
+
+        self.last_query = query
+
+        if not 'australia' in str(query).lower():
+            query = str(query) + ", Australia"
+
+        # print query
+
+        geo = geocoders.GoogleV3()
+
+        try:
+            answer = geo.geocode(query)
+        except:
+            answer = None
+
+        return answer
+
+
+    def ask_gmap_for_timeline(self, query):
+        ''' (GmapQuery, str_query) -> dict_answer
+
+        RETURN :    The dictionary including 'location', 'suburb', 'state', 
+                    'postcode', 'coordinate'
+        '''
+
+        ans = self.ask_gmap(query)
+
+        if not ans:
+            return []
+
+        # print ans
+
+        ans_for_timeline = {'coordinate' : ans[-1]}
+
+        # In most cases, GMap can find 'STREET, SUBURB, COUNTRY', (COORDINATE)
+        if len(ans[0].split(', ')) == 3:
+            ans_for_timeline['location'] = ans[0].split(', ')[0]\
+                                            .encode("utf-8")
+
+            suburb_state_postcode = ans[0].split(', ')[1]\
+                                    .encode("utf-8").split()
+
+            # print suburb_state_postcode
+
+            ans_for_timeline['postcode'] = suburb_state_postcode[-1]
+            ans_for_timeline['state'] = suburb_state_postcode[-2]
+            ans_for_timeline['suburb'] = ' '.join(suburb_state_postcode[:-2])
+
+        # Sometimes, Gmap is unable to find 'STREET'
+        elif len(ans[0].split(', ')) == 2:
+            ans_for_timeline['location'] = ''
+
+            suburb_state_postcode = ans[0].split(', ')[0]\
+                                    .encode("utf-8").split()
+            ans_for_timeline['postcode'] = suburb_state_postcode[-1]
+            ans_for_timeline['state'] = suburb_state_postcode[-2]
+            ans_for_timeline['suburb'] = ' '.join(suburb_state_postcode[:-2])
+
+        return ans_for_timeline
+
 
 
 
@@ -115,4 +181,9 @@ class GmapQuery(object):
 
 if __name__ == '__main__':
 
-    print GmapQuery.check_suburb_by_postcode(2000)
+    gq = GmapQuery()
+
+    # print gq.ask_gmap_for_timeline('SEVEN HILLS Prospect Hwy at Johnson Ave (Station Rd)')
+    # print gq.ask_gmap_for_timeline('CLAREMONT MEADOWS M4 Mwy at Kent Rd')
+    # print gq.ask_gmap_for_timeline('SEVEN HILLS Prospect Hwy at Johnson Ave (Station Rd)')
+    print gq.ask_gmap_for_timeline('DRUMMOYNE Victoria Rd on Iron Cove Bridge')

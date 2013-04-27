@@ -3,7 +3,7 @@
 from twitter_timeline import TwitterTimeline
 from time import strptime
 import datetime
-# from geopy import geocoders
+from gmap_query import GmapQuery
 from auspost_api import AuspostAPI
 from pprint import pprint
 
@@ -40,7 +40,7 @@ class TrafficTimeline(TwitterTimeline):
         raw_data = self.get_timelines()
         processed_data = []
 
-        print raw_data[0].keys()
+        # print raw_data[0].keys()
 
         '''            
         The following are the keys in TrafficNSW timeline raw data
@@ -79,7 +79,14 @@ class TrafficTimeline(TwitterTimeline):
             event_type = str_event[len('Sydney Traffic '):str_event.find(' -')]
 
             event_location = str_event[ str_event.find('-')+2 : \
-                                        str_event.find(' #')]
+                                        str_event.find(' #')].encode("utf-8")
+            event['location_text'] = event_location
+            # print event_location
+            
+            gp = GmapQuery()
+            gmap_answer = gp.ask_gmap_for_timeline(event_location + " nsw")
+            if gmap_answer:
+                event.update(gmap_answer)
 
             # print event_type, event_location
 
@@ -116,7 +123,6 @@ class TrafficTimeline(TwitterTimeline):
         ``provider''.
         '''
 
-            
 
 
     def __str__(self):
@@ -131,5 +137,6 @@ if __name__ == '__main__':
 
     tw = TrafficTimeline()
 
-    print tw.parse_trafficnsw_twitter_entry()
+    for i in tw.parse_trafficnsw_twitter_entry():
+        print i
 
