@@ -106,11 +106,17 @@ class GmapQuery(object):
         elif len(ans[0].split(', ')) == 2:
             ans_for_timeline['location'] = ''
 
-            suburb_state_postcode = ans[0].split(', ')[0]\
+            if ans[0].split(', ')[0] == 'New South Wales':
+                ans_for_timeline['state'] = 'NSW'
+                ans_for_timeline['postcode'] = None
+                ans_for_timeline['suburb'] = None
+            else:
+                suburb_state_postcode = ans[0].split(', ')[0]\
                                     .encode("utf-8").split()
-            ans_for_timeline['postcode'] = suburb_state_postcode[-1]
-            ans_for_timeline['state'] = suburb_state_postcode[-2]
-            ans_for_timeline['suburb'] = ' '.join(suburb_state_postcode[:-2])
+
+                ans_for_timeline['postcode'] = suburb_state_postcode[-1]
+                ans_for_timeline['state'] = suburb_state_postcode[-2]
+                ans_for_timeline['suburb'] = ' '.join(suburb_state_postcode[:-2])
 
         return ans_for_timeline
 
@@ -186,4 +192,4 @@ if __name__ == '__main__':
     # print gq.ask_gmap_for_timeline('SEVEN HILLS Prospect Hwy at Johnson Ave (Station Rd)')
     # print gq.ask_gmap_for_timeline('CLAREMONT MEADOWS M4 Mwy at Kent Rd')
     # print gq.ask_gmap_for_timeline('SEVEN HILLS Prospect Hwy at Johnson Ave (Station Rd)')
-    print gq.ask_gmap_for_timeline('DRUMMOYNE Victoria Rd on Iron Cove Bridge')
+    print gq.ask_gmap_for_timeline('LANSDOWNE Woodville Rd near Hume Hwy, NSW')

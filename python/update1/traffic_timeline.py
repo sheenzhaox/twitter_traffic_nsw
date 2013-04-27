@@ -80,11 +80,16 @@ class TrafficTimeline(TwitterTimeline):
 
             event_location = str_event[ str_event.find('-')+2 : \
                                         str_event.find(' #')].encode("utf-8")
+
+            # Because GMap can't return "a st" near "b st", I replace near by at
+            if ' near ' in event_location:
+                event_location = event_location.replace(' near ', ' at ')
+            
             event['location_text'] = event_location
             # print event_location
             
             gp = GmapQuery()
-            gmap_answer = gp.ask_gmap_for_timeline(event_location + " nsw")
+            gmap_answer = gp.ask_gmap_for_timeline(event_location + ", nsw")
             if gmap_answer:
                 event.update(gmap_answer)
 
@@ -111,7 +116,7 @@ class TrafficTimeline(TwitterTimeline):
             str_event = status['text']
             str_event_time = status['created_at']
 
-            print str_event, str_event_time
+            #print str_event, str_event_time
 
         return raw_data
 
