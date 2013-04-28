@@ -140,17 +140,28 @@ class AuspostAPI(object):
         if q_is_postcode:
             q = str(q)
 
+        # print q
         # The following is to process whether the state has been provided.
         if len(q.split(',')) == 2:
-            q0 = q.split(',')[0]
-            q1 = q.split(',')[1]
-            r = self._postcode_query(q0, state = q1)['localities']['locality']
+            q0 = q.split(',')[0].strip()
+            q1 = q.split(',')[1].strip()
+            # print q0, q1
+            r = self._postcode_query(q0, state = q1)
+            if isinstance(r['localities'], dict):
+                r = r['localities']['locality']
+            else:
+                return None
         else:
             q0 = q
-            r = self._postcode_query(q0)['localities']['locality']
+            r = self._postcode_query(q0)
+            if isinstance(r['localities'], dict):
+                r = r['localities']['locality']
+            else:
+                return None
 
+        # print r, len(r)
         # The following is to filter multiple answers
-        if not q_is_postcode:
+        if not q_is_postcode and isinstance(r, list):
             for i in sorted(r, reverse=True):
                 if i['location'] != q0.upper():
                     r.remove(i)
@@ -292,5 +303,5 @@ class AuspostAPI(object):
 
 if __name__ == '__main__':
     auspost_api = AuspostAPI()
-    print auspost_api.search_postcode('epping, nsw')
+    print auspost_api.search_postcode('homebush')
 

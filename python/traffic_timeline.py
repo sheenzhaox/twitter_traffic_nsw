@@ -93,6 +93,41 @@ class TrafficTimeline(TwitterTimeline):
             if gmap_answer:
                 event.update(gmap_answer)
 
+            # Process when GMap can't find the right place
+            if event['postcode']==None or (not any(char.isdigit() for char in event['postcode'])):
+                location_str = event_location.split()
+                suburb = []
+                for i in location_str:
+                    if i==i.upper() and (not any(char.isdigit() for char in i)):
+                        suburb.append(i)
+                    else:
+                        break
+                suburb = ' '.join(suburb)
+                event['suburb'] = suburb
+                
+                # gmap_answer = gp.ask_gmap_for_timeline(event_location + ", nsw")
+                # if gmap_answer:
+                #     event['postcode'] = gmap_answer['postcode']
+
+                auspost = AuspostAPI()
+                suburb = suburb + ", NSW"
+                # print suburb
+                postcode = auspost.search_postcode(suburb)
+                # print postcode
+                if postcode!= None:
+                    if isinstance(postcode, list):
+                        event['postcode'] = postcode[0]['postcode']
+                        event['coordinate'] = (postcode[0]['latitude'], postcode[0]['longitude'])
+                    elif isinstance(postcode, dict):
+                        event['postcode'] = postcode['postcode']
+                        event['coordinate'] = (postcode['latitude'], postcode['longitude'])
+                else:
+                    event['postcode'] = None
+                # print postcode
+
+                event['location'] = event_location[len(suburb)+1:]
+                        
+
             # print event_type, event_location
 
             processed_data.append(event)
