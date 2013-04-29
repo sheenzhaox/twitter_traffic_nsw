@@ -94,7 +94,8 @@ class TrafficTimeline(TwitterTimeline):
                 event.update(gmap_answer)
 
             # Process when GMap can't find the right place
-            if event['postcode']==None or (not any(char.isdigit() for char in event['postcode'])):
+            if not 'postcode' in event.keys() or event['postcode']==None \
+            or (not any(char.isdigit() for char in event['postcode'])):
                 location_str = event_location.split()
                 suburb = []
                 for i in location_str:

@@ -36,3 +36,9 @@ nosetests.xml
 .mr.developer.cfg
 .project
 .pydevproject
+
+# Eclipse setting folder
+.metadata/
+
+# Django venv
+venv/
