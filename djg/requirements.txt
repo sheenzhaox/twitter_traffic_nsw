@@ -1,0 +1,1 @@
+pip install Django twitter geopy psycopg2
