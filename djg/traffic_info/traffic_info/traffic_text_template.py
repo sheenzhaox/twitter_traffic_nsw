@@ -8,21 +8,37 @@ def traffic_text_template(tt_output):
 
     raw_html = '''
     <html>
+    
     <head><title>Latest traffic information</title></head>
 
     <body>
-
-    {% for i in events %}
-    {{ i.suburb }}
-    {% endfor %}
-
+    
+        <h1>Latest traffic information</h1>
+    
+        <ul>
+        {% for i in events %}
+            <li>{{ i.suburb }}</li>
+        {% endfor %}
+        </ul>
+        
+        <table border="1">
+        {% for i in events %}
+            <tr>
+            <td>i.suburb</td>
+            <td>i.location</td>
+            <td>i.type</td>
+            <td>i.postcode</td>
+            </tr>
+        {% endfor %}
+        </table>
+        
     </body>
     </html>
     '''
     
     t = template.Template(raw_html)
     
-    events = template.Context(tt_output)
+    events = template.Context({'events':tt_output})
     
     html = t.render(events)
     
