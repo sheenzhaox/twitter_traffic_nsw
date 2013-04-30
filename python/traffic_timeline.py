@@ -77,7 +77,7 @@ class TrafficTimeline(TwitterTimeline):
             str_event = entry['text']
 
             event_type = str_event[len('Sydney Traffic '):str_event.find(' -')]
-            event[type] = event_type
+            event['type'] = event_type
 
             event_location = str_event[ str_event.find('-')+2 : \
                                         str_event.find(' #')].encode("utf-8")

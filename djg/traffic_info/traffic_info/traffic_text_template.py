@@ -14,20 +14,19 @@ def traffic_text_template(tt_output):
     <body>
     
         <h1>Latest traffic information</h1>
-    
-        <ul>
-        {% for i in events %}
-            <li>{{ i.suburb }}</li>
-        {% endfor %}
-        </ul>
         
         <table border="1">
+        
+        <th> Time </th>
+        <th> Suburb </th>
+        <th> Location </th>
+        <th> Type </th>
         {% for i in events %}
             <tr>
-            <td>i.suburb</td>
-            <td>i.location</td>
-            <td>i.type</td>
-            <td>i.postcode</td>
+            <td>{{i.time}}</td>
+            <td>{{i.suburb}}</td>
+            <td>{{i.location}}</td>
+            <td>{{i.type}}</td>
             </tr>
         {% endfor %}
         </table>
@@ -37,6 +36,9 @@ def traffic_text_template(tt_output):
     '''
     
     t = template.Template(raw_html)
+    
+    for i in range(len(tt_output)):
+        tt_output[i]['time'] = str(tt_output[i]['time'])
     
     events = template.Context({'events':tt_output})
     
