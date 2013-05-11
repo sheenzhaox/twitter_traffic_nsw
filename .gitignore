@@ -5,7 +5,7 @@
 
 # C extensions
 *.so
-.m4
+*.m4
 
 # Packages
 *.egg
